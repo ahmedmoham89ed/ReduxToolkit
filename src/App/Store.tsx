@@ -3,11 +3,12 @@ import { useDispatch } from 'react-redux'
 import counterSlice  from './features/counter/counterSlice'
 import CartSlice  from './features/Cart/CartSlice'
 import { productsApi } from './features/Products/productSlicer'
-
+import ProductSlice from "./features/Products/createAsyncThunkEx";
 const store = configureStore({
   reducer: {
     counter:counterSlice,
     cart:CartSlice,
+    Products:ProductSlice,
     [productsApi.reducerPath]:productsApi.reducer
   },
   middleware:getDefaultMiddleware=>getDefaultMiddleware({

@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { Iproduct } from "../Interface/Index";
 import { useGetProductListQuery } from "../App/features/Products/productSlicer";
+import { useDispatch } from "react-redux";
+import { getProductList } from "../App/features/Products/createAsyncThunkEx";
+import { AppDispatch } from "../App/Store";
 
 const ProductList = () => {
-  const {isLoading,data}=useGetProductListQuery([]);
-  
+  const dispatch=useDispatch<AppDispatch>();
 
-  if(isLoading)return <h3>....Loading</h3>
+  useEffect(()=>{
+   dispatch(getProductList());
+  },[dispatch]);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 p-2 rounded-md">
-      {data.products.map((product: Iproduct) => (
+      {[].map((product: Iproduct) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>
