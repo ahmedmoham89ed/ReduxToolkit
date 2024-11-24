@@ -1,7 +1,7 @@
+import { RootState } from './../../Store';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Iproduct } from "../../../Interface/Index";
 import axiosInstance from "../../../Config/AxiosConfig";
-import { RootState } from "../../Store";
 
 interface productsState {
   loading: boolean;
@@ -29,8 +29,7 @@ export const getProductList = createAsyncThunk(
     }
   }
 );
-
-const productsSlice = createSlice({
+ const productsSlice = createSlice({
   name: "products", // ** Attached with Store
   initialState,
   reducers: {},
@@ -50,5 +49,5 @@ const productsSlice = createSlice({
       });
   },
 });
-
+export const selectProducts = (state: RootState) => state.Products;
 export default productsSlice.reducer;
